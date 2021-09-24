@@ -18,11 +18,12 @@
  *
  */
 
-// const HDWalletProvider = require('truffle-hdwallet-provider');
+const HDWalletProvider = require("@truffle/hdwallet-provider");
 // const infuraKey = "fj4jll3k.....";
 //
-// const fs = require('fs');
+const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
+const secrets = JSON.parse(fs.readFileSync(".secrets.json").toString().trim());
 
 module.exports = {
   /**
@@ -68,6 +69,16 @@ module.exports = {
       // timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
       // skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
     // },
+    kovan: {
+      networkCheckTimeout: 10000,
+      provider: () => {
+         return new HDWalletProvider(
+           secrets.mnemonic,
+           `wss://kovan.infura.io/ws/v3/${secrets.projectId}`
+         );
+      },
+      network_id: "42",
+    },
 
     // Useful for private networks
     // private: {
@@ -95,5 +106,8 @@ module.exports = {
       //  evmVersion: "byzantium"
       // }
   //  }
+    solc: {
+      version: "0.8.7" // ex:  "0.4.20". (Default: Truffle's installed solc)
+    }
   }
 }
