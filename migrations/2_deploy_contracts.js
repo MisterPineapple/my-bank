@@ -1,9 +1,9 @@
-const PAT = 10**18; // 1 PAT = 1000000000000000000 weiPAT
+const PTOKEN = 10**18; // 1 PTOKEN = 1000000000000000000 weiPTOKEN
 
 const TestToken = artifacts.require("./PatcharapolToken.sol");
-// var SimpleBank = artifacts.require("SimpleBank");
+var SimpleBank = artifacts.require("SimpleBank");
 
 module.exports = function(deployer) {
   deployer.deploy(TestToken);
-  // deployer.deploy(SimpleBank, { value: 5000 * PTOKEN });
+  deployer.deploy(SimpleBank, { value: 10000 * PTOKEN });
 };

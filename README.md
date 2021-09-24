@@ -2,17 +2,10 @@
 
 This is a modified version of the Simple Bank smart contract example using Solidity. 
 Instead of rewarding all clients, which means that the bank contract should hold all that Ether beforehand,
-it only rewards the 3 first clients with 10 Ether each. 
-
-Consequently, when deployed, the contract should be fetched 30 Ether and the constructor is payable. 
-To do so for tests, the Truffle deployment script "2_deploy_contracts.js" is:
-
-```
-const ether = 10**18; // 1 ether = 1000000000000000000 wei
-var SimpleBank = artifacts.require("SimpleBank");
+it only rewards the 3 first clients with 1000 PTOKEN each. 
 
 module.exports = function(deployer) {
-  deployer.deploy(SimpleBank, { value: 30 * ether });
+  deployer.deploy(SimpleBank, { value: 30 * PTOKEN });
 };
 ```
 
@@ -28,7 +21,7 @@ npm install -g truffle
 
 Note: checked with version
 
-* Truffle v5.0.37 / Solidity v0.5.8
+* Truffle v5.4.11 / Solidity v0.8.7
 
 ## Deployment and Testing
 
@@ -50,6 +43,12 @@ If there are no errors, the contracts can be deployed to the local development n
 
 ```
 truffle migrate
+```
+
+If you want to deploy the contracts to Kovan Test Network:
+
+```
+truffle migrate --network kovan
 ```
 
 Finally, they can be tested:

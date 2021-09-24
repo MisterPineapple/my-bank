@@ -13,19 +13,18 @@ contract SimpleBank {
     // Constructor is "payable" so it can receive the initial funding of 0.002, 
     // required to reward the first 3 clients
     constructor() public payable {
-        require(msg.value == 100 ether , "0.002 PAT initial funding required");
+        require(msg.value == 1000 PTOKEN , "1000 PTOKEN initial funding required");
         /* Set the owner to the creator of this contract */
         owner = msg.sender;
         clientCount = 0;
     }
 
     /// @notice Enroll a customer with the bank, 
-    /// giving the first 3 of them 10 ether as reward
     /// @return The balance of the user after enrolling
     function enroll() public returns (uint) {
         if (clientCount < 3) {
             clientCount++;
-            balances[msg.sender] = 0.00003 ether;
+            balances[msg.sender] = 0.00003 PTOKEN;
         }
         return balances[msg.sender];
     }
