@@ -6,7 +6,7 @@ it only rewards the 3 first clients with 1000 PTOKEN each.
 
 ```
 module.exports = function(deployer) {
-  deployer.deploy(SimpleBank, { value: 30 * PTOKEN });
+  deployer.deploy(SimpleBank, { value: 1000000 * PTOKEN });
 };
 ```
 
